@@ -48,21 +48,21 @@ function setupForm() {
         lastSearchString = searchString.value; // cache
         event.preventDefault();
         searchPixaby(searchString.value, color.value, 1);
-    }
+    };
 }
 
 function setupNextPageButton() {
     let button = document.querySelector('#next');
     button.onclick = () => {
         changePage(++currentPage);
-    }
+    };
 }
 
 function setupPreviousPageButton() {
     let button = document.querySelector('#previous');
     button.onclick = () => {
         changePage(--currentPage);
-    }
+    };
 }
 
 function changePage(newPageNumber) {
@@ -83,6 +83,9 @@ async function searchPixaby(searchQuery, searchColor, pageNumber) {
         li.querySelector('img').src = image.largeImageURL;
         li.querySelector('#tags').textContent = image.tags;
         li.querySelector('#photographer').textContent = image.user;
+        li.querySelector('.remove-button').onclick = () => {
+            li.remove();
+        };
         hitList.append(li);
     }
     setPaginationButtonStatus();
